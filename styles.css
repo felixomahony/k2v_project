@@ -1,5 +1,6 @@
 :root {
   --paper: #eef0f2;
+  --page: var(--band);   /* behind the content column: the hero band colour */
   --ink: #182127;
   --grey: #d3d6d9;
   --blue: #294683;
@@ -20,9 +21,23 @@ body {
   min-height: 100vh;
   margin: 0;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--page);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* the header and hero span the page as before; below them the content sits on a
+   paper-coloured column, set off from the page behind it (the hero band colour) */
+.site-header {
+  background: var(--paper);
+}
+
+.content {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: var(--paper);
+  border-right: 1px solid #dfe2e5;
+  border-left: 1px solid #dfe2e5;
 }
 
 .hero {
@@ -33,12 +48,12 @@ body {
 
 .pipeline {
   display: grid;
-  grid-template-columns: minmax(360px, 1fr) 42px 150px 42px minmax(250px, 280px);
+  grid-template-columns: minmax(360px, 1fr) 42px 150px 42px minmax(205px, 225px);
   align-items: center;
 }
 
 .pipeline + .pipeline {
-  margin-top: clamp(56px, 7vh, 84px);
+  margin-top: clamp(26px, 3.5vh, 40px);
 }
 
 .signal-group {
@@ -408,7 +423,7 @@ body {
 
 @media (max-width: 1280px) {
   .pipeline {
-    grid-template-columns: minmax(280px, 1fr) 34px 140px 34px minmax(235px, 265px);
+    grid-template-columns: minmax(280px, 1fr) 34px 140px 34px minmax(195px, 215px);
   }
 }
 
@@ -462,7 +477,7 @@ body {
   }
 
   .pipeline + .pipeline {
-    margin-top: 58px;
+    margin-top: 36px;
   }
 
   .pipeline .signal-group {
@@ -546,7 +561,30 @@ body {
 /* ---- Title --------------------------------------------------------------------- */
 
 .site-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
   padding: 28px 36px 26px;
+}
+
+.site-authors {
+  margin: 10px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.site-authors a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--grey);
+  text-underline-offset: 3px;
+}
+
+.site-authors a:hover,
+.site-authors a:focus-visible {
+  text-decoration-color: currentColor;
 }
 
 /* the hero sits on a slightly darker full-width band */
@@ -558,8 +596,8 @@ body {
 
 .site-links {
   display: flex;
+  flex-shrink: 0;
   gap: 10px;
-  margin-top: 14px;
 }
 
 .site-link {
@@ -581,8 +619,12 @@ body {
   fill: currentColor;
 }
 
-.site-link:hover,
-.site-link:focus-visible {
+.site-link[aria-disabled="true"] {
+  cursor: default;
+}
+
+.site-link[href]:hover,
+.site-link[href]:focus-visible {
   background: var(--ink);
   color: var(--paper);
 }
@@ -597,8 +639,8 @@ body {
 }
 
 .hero-band .hero {
-  padding-top: clamp(48px, 8vh, 88px);
-  padding-bottom: clamp(48px, 8vh, 88px);
+  padding-top: clamp(24px, 3.5vh, 40px);
+  padding-bottom: clamp(24px, 3.5vh, 40px);
 }
 
 /* ---- Abstract ------------------------------------------------------------------ */
@@ -606,7 +648,7 @@ body {
 .abstract {
   width: min(1080px, calc(100% - 160px));
   margin: 0 auto;
-  padding: clamp(48px, 7vh, 80px) 0 clamp(40px, 6vh, 64px);
+  padding: clamp(28px, 4vh, 44px) 0 clamp(22px, 3vh, 34px);
 }
 
 .abstract p {
@@ -620,7 +662,7 @@ body {
 /* ---- Benchmark charts ---------------------------------------------------------- */
 
 .chart {
-  margin: 4px 0 40px;
+  margin: 4px 0 26px;
 }
 
 .chart-title {
@@ -688,12 +730,12 @@ body {
 .results {
   width: min(1080px, calc(100% - 160px));
   margin: 0 auto;
-  padding: 0 0 clamp(64px, 9vh, 104px);
+  padding: 0 0 clamp(36px, 5vh, 56px);
 }
 
 .results-title {
-  margin: 0 0 10px;
-  padding-top: 26px;
+  margin: 0 0 8px;
+  padding-top: 18px;
   border-top: 1px solid var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 28px;
@@ -703,7 +745,7 @@ body {
 
 .results-footnote {
   max-width: 760px;
-  margin: 12px 2px 34px;
+  margin: 10px 2px 22px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 13px;
   line-height: 1.5;
@@ -712,7 +754,7 @@ body {
 
 .results-lede {
   max-width: 640px;
-  margin: 0 0 26px;
+  margin: 0 0 16px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 15px;
   line-height: 1.5;
@@ -743,7 +785,7 @@ body {
 
 .results-list {
   display: grid;
-  gap: 26px;
+  gap: 16px;
 }
 
 .result-note {
@@ -1003,5 +1045,14 @@ body {
 
   .result-keyframe-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* narrow screens: the buttons drop under the title and authors */
+@media (max-width: 680px) {
+  .site-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px 16px 20px;
   }
 }

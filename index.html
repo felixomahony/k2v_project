@@ -13,8 +13,15 @@
   <body>
     <main id="top">
       <header class="site-header">
-        <h1 class="site-title">K2V: Generative Keyframing for Physically Plausible Video Generation</h1>
+        <div class="site-heading">
+          <h1 class="site-title">K2V: Generative Keyframing for Physically Plausible Video Generation</h1>
+          <p class="site-authors"><a href="https://felixomahony.github.io/">Felix O'Mahony</a>, Daniel Olmeda Reino, <a href="https://mi.eng.cam.ac.uk/~cipolla/">Roberto Cipolla</a>, <a href="https://ayushtewari.com/">Ayush Tewari</a></p>
+        </div>
         <nav class="site-links" aria-label="Project links">
+          <a class="site-link" aria-disabled="true">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 0h5.5L14 4.5V15a1 1 0 01-1 1H4a1 1 0 01-1-1V1a1 1 0 011-1zm5 1.5V5h3.5zM5 8v1h6V8zm0 2.5v1h6v-1zm0 2.5v1h4v-1z"/></svg>
+            <span>Paper</span>
+          </a>
           <a class="site-link" href="https://github.com/felixomahony/k2v">
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
             <span>Code</span>
@@ -159,6 +166,7 @@
       </section>
       </div>
 
+      <div class="content">
       <section class="abstract" aria-labelledby="abstract-title">
         <h2 class="results-title" id="abstract-title">Abstract</h2>
         <p>
@@ -183,7 +191,7 @@
         </p>
         <div class="chart-host" data-chart="physics-iq"></div>
         <div class="results-head results-head-4" aria-hidden="true">
-          <span>Input</span><span>K2V+Wan2.2-14B</span><span>Wan2.2-14B</span><span>Cosmos3-Super</span>
+          <span>Input</span><span>Ours</span><span>Wan2.2-14B</span><span>Cosmos3-Super</span>
         </div>
         <div class="results-list" data-results="physics-iq"></div>
       </section>
@@ -196,7 +204,7 @@
         </p>
         <div class="chart-host" data-chart="phygenbench"></div>
         <div class="results-head results-head-4" aria-hidden="true">
-          <span>Input</span><span>K2V+Wan2.2-14B</span><span>Wan2.2-T2V-A14B</span><span>NEWTON*</span>
+          <span>Input</span><span>Ours</span><span>Wan2.2-T2V-A14B</span><span>NEWTON*</span>
         </div>
         <div class="results-list" data-results="phygenbench-newton"></div>
         <p class="results-footnote">
@@ -205,6 +213,7 @@
           GPT-5.5 planner and Seedance 2.0 Fast video generator.
         </p>
       </section>
+      </div>
     </main>
 
     <script src="app.js"></script>

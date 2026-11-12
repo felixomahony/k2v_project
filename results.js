@@ -106,7 +106,7 @@
     const grid = el("div", "result-grid");
     grid.append(
       inputCell(example),
-      videoCell("K2V+Wan2.2-14B", example.ours, `K2V+Wan2.2-14B: ${example.title}`),
+      videoCell("Ours", example.ours, `Ours: ${example.title}`),
       // image-to-video rows (they carry a Cosmos column) compare against the I2V 14B,
       // text-to-video rows against the T2V 14B
       videoCell("cosmos" in example ? "Wan2.2-14B" : "Wan2.2-T2V-A14B", example.wan,
