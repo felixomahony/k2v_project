@@ -556,6 +556,37 @@ body {
   border-bottom: 1px solid #d3d8dd;
 }
 
+.site-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.site-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.site-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.site-link:hover,
+.site-link:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+}
+
 .site-title {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
