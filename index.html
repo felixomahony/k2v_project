@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="K2V uses generated keyframes to guide physically plausible video generation."
+    />
+    <title>K2V: Generative Keyframing for Physically Plausible Video Generation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="top">
+      <header class="site-header">
+        <h1 class="site-title">K2V: Generative Keyframing for Physically Plausible Video Generation</h1>
+      </header>
+
+      <div class="hero-band">
+      <section class="hero">
+        <div class="comparison" aria-label="Comparison of standard and keyframe-conditioned Wan2.2-14B">
+          <article class="pipeline pipeline-baseline" aria-label="Vanilla Wan2.2-14B">
+            <div class="signal-group">
+              <div class="signal-strip signal-strip-baseline" aria-label="One initial frame followed by empty conditioning frames">
+                <div class="condition-time-area">
+                  <figure class="condition-frame condition-frame-start" data-start-frame>
+                    <img src="assets/duck-dominos-start.jpg" alt="Initial frame: a yellow duck between two rows of dominoes" />
+                    <figcaption>Start</figcaption>
+                  </figure>
+                </div>
+              </div>
+              <div class="dial" data-dial aria-label="Video timeline from zero to five seconds">
+                <div class="dial-rail"><span class="playhead"></span></div>
+                <div class="dial-labels" aria-hidden="true">
+                  <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-arrow flow-arrow-in" aria-hidden="true"><span></span></div>
+
+            <div class="model-block">
+              <strong><span>Wan2.2-14B</span></strong>
+            </div>
+
+            <div class="flow-arrow flow-arrow-out" aria-hidden="true"><span></span></div>
+
+            <div class="output-group">
+              <div class="video-shell" data-video-shell="baseline">
+                <video
+                  id="baseline-video"
+                  muted
+                  playsinline
+                  preload="auto"
+                  poster="assets/duck-dominos-baseline-poster.jpg"
+                  aria-label="Wan2.2-14B generation of the duck and domino scene"
+                >
+                  <source src="assets/duck-dominos-baseline.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="dial" data-dial aria-hidden="true">
+                <div class="dial-rail"><span class="playhead"></span></div>
+                <div class="dial-labels"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5s</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="pipeline pipeline-k2v" aria-label="K2V+Wan2.2-14B">
+            <div class="signal-group">
+              <div class="signal-strip signal-strip-k2v" aria-label="Initial frame and two generated keyframes at 1.25 and 5 seconds">
+                <div class="condition-time-area">
+                  <div class="keyframe-generator">Keyframe module</div>
+                  <svg class="generator-arrows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <marker id="generator-arrowhead" viewBox="0 0 12 8" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L12,4 L0,8 Z"></path>
+                      </marker>
+                    </defs>
+                    <path class="generator-arrow generator-arrow-one" d="M49 13 H35 V43"></path>
+                    <path class="generator-arrow generator-arrow-two" d="M86 13 H100 V43"></path>
+                    <path class="generator-arrow generator-arrow-three" d=""></path>
+                  </svg>
+                  <figure class="condition-frame condition-frame-start" data-start-frame>
+                    <img src="assets/duck-dominos-start.jpg" alt="Initial frame: a yellow duck between two rows of dominoes" />
+                    <figcaption>Start</figcaption>
+                  </figure>
+                  <figure class="condition-frame condition-frame-key condition-frame-one" data-keyframe="1.25">
+                    <img src="assets/duck-dominos-keyframe-01.jpg" alt="Generated keyframe with the right-hand dominoes fallen against the duck" />
+                    <figcaption>1.25s</figcaption>
+                  </figure>
+                  <figure class="condition-frame condition-frame-key condition-frame-two" data-keyframe="5">
+                    <img src="assets/duck-dominos-keyframe-02.jpg" alt="Generated final keyframe with the right-hand dominoes at rest" />
+                    <figcaption>5.0s</figcaption>
+                  </figure>
+                  <figure class="condition-frame condition-frame-key condition-frame-three" data-keyframe="5" hidden>
+                    <img src="assets/duck-dominos-keyframe-02.jpg" alt="" />
+                    <figcaption>5.0s</figcaption>
+                  </figure>
+                </div>
+              </div>
+              <div class="dial dial-keyframed" data-dial aria-label="Timeline with keyframes at 1.25 and 5 seconds">
+                <div class="dial-rail">
+                  <span class="playhead"></span>
+                </div>
+                <div class="dial-labels" aria-hidden="true">
+                  <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-arrow flow-arrow-in flow-arrow-accent" aria-hidden="true"><span></span></div>
+
+            <div class="model-block model-block-accent">
+              <strong><span>K2V+</span><span>Wan2.2-14B</span></strong>
+            </div>
+
+            <div class="flow-arrow flow-arrow-out flow-arrow-accent" aria-hidden="true"><span></span></div>
+
+            <div class="output-group">
+              <div class="video-shell" data-video-shell="keyframe">
+                <video
+                  id="keyframe-video"
+                  muted
+                  playsinline
+                  preload="auto"
+                  poster="assets/duck-dominos-k2v-poster.jpg"
+                  aria-label="K2V+Wan2.2-14B generation of the duck and domino scene"
+                >
+                  <source src="assets/duck-dominos-k2v.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="dial dial-keyframed" data-dial aria-hidden="true">
+                <div class="dial-rail">
+                  <span class="playhead"></span>
+                </div>
+                <div class="dial-labels"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5s</span></div>
+              </div>
+            </div>
+          </article>
+
+          <nav class="scene-toggle" aria-label="Select comparison scene">
+            <button class="is-active" type="button" data-scene="duck-and-dominos" aria-pressed="true">
+              Duck and Dominos
+            </button>
+            <button type="button" data-scene="weight-protects-duck" aria-pressed="false">
+              Weight Protects Duck
+            </button>
+            <button type="button" data-scene="weight-on-paper" aria-pressed="false">
+              Weight on Paper
+            </button>
+          </nav>
+        </div>
+      </section>
+      </div>
+
+      <section class="abstract" aria-labelledby="abstract-title">
+        <h2 class="results-title" id="abstract-title">Abstract</h2>
+        <p>
+          Video diffusion models are able to generate samples with high-quality appearance and
+          textural qualities. However, it is a well known phenomenon that content produced by these
+          methods exhibits significant physical errors. We propose to resolve these issues by
+          redistributing the task of physical reasoning onto a language model-backed keyframe
+          module. We then condition a video generation model with these keyframes, reducing the
+          role of the diffusion model to the simpler task of interpolating between
+          physically-correct intermediate states, rather than inferring an entire sequence with
+          diffusion. Results demonstrate that our approach significantly outperforms existing
+          approaches, achieving state-of-the-art performance on the Physics-IQ Verified benchmark
+          and PhyGenBench.
+        </p>
+      </section>
+
+      <section class="results" aria-labelledby="results-physics-iq">
+        <h2 class="results-title" id="results-physics-iq">Physics-IQ Verified</h2>
+        <p class="results-lede">
+          Image-to-video: each clip continues from the benchmark&rsquo;s own starting frame. Open a
+          row to see the keyframes our agent generated and the prompt it expanded.
+        </p>
+        <div class="chart-host" data-chart="physics-iq"></div>
+        <div class="results-head results-head-4" aria-hidden="true">
+          <span>Input</span><span>K2V+Wan2.2-14B</span><span>Wan2.2-14B</span><span>Cosmos3-Super</span>
+        </div>
+        <div class="results-list" data-results="physics-iq"></div>
+      </section>
+
+      <section class="results" aria-labelledby="results-phygenbench">
+        <h2 class="results-title" id="results-phygenbench">PhyGenBench</h2>
+        <p class="results-lede">
+          Text-to-video: the input is the benchmark&rsquo;s prompt alone, and our agent generates the
+          opening frame as its first keyframe.
+        </p>
+        <div class="chart-host" data-chart="phygenbench"></div>
+        <div class="results-head results-head-4" aria-hidden="true">
+          <span>Input</span><span>K2V+Wan2.2-14B</span><span>Wan2.2-T2V-A14B</span><span>NEWTON*</span>
+        </div>
+        <div class="results-list" data-results="phygenbench-newton"></div>
+        <p class="results-footnote">
+          * The full code for NEWTON has not been released. These clips come from OpenNEWTON, the
+          version its authors provide, which uses no trained components; we run it with its default
+          GPT-5.5 planner and Seedance 2.0 Fast video generator.
+        </p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="results-data.js"></script>
+    <script src="results.js"></script>
+    <script src="charts.js"></script>
+  </body>
+</html>
